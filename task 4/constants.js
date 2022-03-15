@@ -1,5 +1,7 @@
+const PROCESSING_TIMEOUT_MS = 2000;
+
 const PROCESSING_STATE = "processing";
-const ERROR_STATE = 'error';
+const ERROR_STATE = "error";
 const SUCCESS_STATE = "success";
 
 const NO_STOCK_ERROR_CODE = "NO_STOCK";
@@ -41,6 +43,7 @@ const mapErrorCodeToStateObject = (errorCode) => {
 };
 
 module.exports = Object.freeze({
+  PROCESSING_TIMEOUT_MS,
   PROCESSING_STATE,
   ERROR_STATE,
   SUCCESS_STATE,
@@ -50,5 +53,5 @@ module.exports = Object.freeze({
   NULL_OR_UNDEFINED_ERROR_STATE_OBJECT,
   NO_STOCK_ERROR_CODE,
   INCORRECT_DETAILS_ERROR_CODE,
-  mapErrorCodeToStateObject
+  mapErrorCodeToStateObject,
 });

@@ -27,7 +27,7 @@ const getProcessingPage = async (statesArray) => {
 const getStateObject = async (state, errorCode) => {
   switch (state) {
     case constants.PROCESSING_STATE:
-      await waitFor(2000);
+      await waitFor(constants.PROCESSING_TIMEOUT_MS);
       return;
     case constants.SUCCESS_STATE:
       return constants.SUCCESS_STATE_OBJECT;
