@@ -1,0 +1,29 @@
+a,b. Short description of API - URI, format and possible frameworks
+
+GET	api/profiles -> get all profiles
+GET	api/profiles/:id -> get profile by id
+
+We will call these endpoints to fetch the data as previously mentioned in the frontend.txt.
+
+We would need a db.config to configure the parameters for our DB: Mysql/other options fine too
+We can use an ORM to help us work with db - Sequalize/other options fine too
+We create express sever -> CORS and express rest api 
+Create data model
+Profile controller
+Routes for the get operations ( maybe crud in future ? )
+
+Profile:
+ - id
+ - name
+ - fullname
+ - photo
+ - details
+
+Write tests to see data is returned correctly.
+
+Nest.js is also a very good framework implemented on top of express, but might be overkill for what we need in here.
+
+
+
+
+

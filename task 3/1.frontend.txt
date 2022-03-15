@@ -1,0 +1,124 @@
+a. Stack
+
+-> React
+
+Speed, Virtual DOM only updating the page content only where is has changed, very light library
+JSX create components with HTML syntax, easy to write, read, understand => less code and cleaner
+Open source by facebook/popularity => credibility and stability. A lot of helpful libaries with react compatibility and good documentation.
+React hooks => better readability, encapsulating side effects, reusable logic
+Options when it comes to state management based on the app needs: local state, redux, mobx, context api
+Easily testable with many options
+
+-> React testing library (unit tests)
+
+Testing react components without relying on the implementation details, can fire events and manipulate component and track if it behaves as expected
+We ensure components work as expected. When there is a big coverage of units tests, we can be confident, that we will be able to catch if future changes
+will break some of our logic and fix it before reaching in prod.
+
+-> Typescript 
+
+Better readability. Type safety: runtime errors are caught. Clear overview of what is data is expected( especially when receiving data from API it becomes self explenatory).
+Less bugs. IDE support, autocomplete is also nice, mouse hover support
+
+Cons: more time spent for having it, but worth it in the long run imo
+
+
+-> Styling
+
+I personally like a lot styling components, the components become self explanatory, cleaner readable code. Also easily configurable to adjust dinamyc css with props.
+
+optional: Material UI would be the my go to library, covers a lot of UI components, easily configurable, big community, constants updates, many icons, typescript support.
+For our case, not needed though, but might be good for upcoming functionalities.
+
+
+-> Code formatting
+
+Eslint, prettier
+
+
+-> Cypress ( end to end tests) *optional* 
+
+End to tests are more important than unit tests, but also require more work. Cypress would be first option since it allows writing tests in javascript.
+Executes tests directly in browser.
+We can track more complex user scenerios around main and this will enable a bigger involvement of more components/logic, therefore we can automatically
+see if future changes break some of our key app functionalities.
+
+I put it as optional, since here it will not bring many benefits ( we only display a list of profiles), basically just display API data. This can be tested in BE.
+But if time is not a constraint and there are more complex functionalities coming up, would be useful to have it in already in the early stages of app. 
+
+----------------------
+
+b. Directory structure
+
+additional help files split: types.ts (interfaces), styles.ts (css), __tests folder with the tests and mocks
+
+| App.tsx -> the entry point for our SPA. Here, we define all the routes. Every route corespondent to a page component
+| pages -> the page components
+  | ProfileListingPage
+    | index.tsx 
+    | additional help files
+  | ProfilePage
+    | index.tsx
+    | additional help files 
+| components -> reusable components across the app
+    | ProfileCard
+      | index.tsx
+      | __tests
+        | ProfileCard.spec.tsx
+
+
+
+---------------------------------------------
+
+c,d. List of components to implement/location
+
+
+First step: fetching data
+
+    ProfileListingPage component will make use of react hooks: useEffect to fetch the profiles from the BE, which will then update the local state with the results. 
+
+    We can also display a loading indicator while the result is still not completed.
+
+Second step: delegating data
+     
+    map the fetched response => profiles.map( element => <ProfileCard name={element.name} email={element.email} avatar={element.photo} profileId={element.id} />)
+
+    So, the ProfileCard would have the 3 props, then render a flexed div container with column direction, and the second div with row direction inside, rendering name,
+    email. Fit photo to original ratio inside the box.
+
+Third step: redirect on click
+
+    We can have a cursor pointer/see more button on the ProfileCard that onClick redirects to FE route profile-details/id => redirects to ProfilePage component
+
+    In ProfilePage we can get the id using the hook useParams and then fetch the node endpoint by uuid.
+
+    We would then render again the ProfileCard component with the data from api ( we could also have an additional styles prop to control the width/height of picture if 
+    we decided to keep the same design on that page but different width/height/font-size values etc)
+
+
+Additional possible steps:
+
+    Introduce a state management approach depending next on next iteration: Context Api would work fine. Local state is good enough for this iteration I'd say.
+    
+    Unit test the ProfilePage to see if data sent in props is present in the documentation
+    If redirect works and the data is present in the docs
+
+    Given we render pictures, we can also have pagionation limited so we don't load too many at once and have a slow user experience. 
+
+
+---------------------------------------------
+
+e. Benefits of SPA
+
+- quicker: dynamically rewriting the current page rather than loading entire new pages from a server ( virtual dom )
+- easy debugging
+- loading only the needed assets
+
+
+
+
+
+
+
+
+
