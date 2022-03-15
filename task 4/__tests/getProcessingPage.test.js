@@ -46,10 +46,10 @@ describe("State objects: getProcessingPage function", () => {
   });
 });
 
-// this might not be accuarate/ideal to test it, but was curious to play around how it could be tested
+// this might not be a good fit to unit test it (this will also keep the ), but was curious to play around how a timeout test could possibly look like
 
-describe("State objects: getProcessingPage function timeout works", () => {
-  test("takes 2 seconds for one timeout", () => {
+describe("State objects: getProcessingPage function timeout works as expected", () => {
+  test("takes 2 seconds timeout for  one processing ", () => {
     var startTime = performance.now();
     return getProcessingPage([successState, processingState]).then((data) => {
       var endTime = performance.now();
@@ -59,20 +59,6 @@ describe("State objects: getProcessingPage function timeout works", () => {
 
       expect(data).toStrictEqual([constants.SUCCESS_STATE_OBJECT]);
       expect(seconds).toBe(2);
-    });
-  });
-
-  // duplicate code, just one more processing state
-  test("takes 4 seconds for two timeouts", () => {
-    var startTime = performance.now();
-    return getProcessingPage([successState, processingState, processingState]).then((data) => {
-      var endTime = performance.now();
-      const timeDiffInMiliseconds = endTime - startTime;
-
-      var seconds = Number(((timeDiffInMiliseconds % 60000) / 1000).toFixed(0));
-
-      expect(data).toStrictEqual([constants.SUCCESS_STATE_OBJECT]);
-      expect(seconds).toBe(4);
     });
   });
 });

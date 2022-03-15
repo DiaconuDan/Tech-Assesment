@@ -29,7 +29,7 @@ const mapErrorCodeToStateObject = (errorCode) => {
   if (!errorCode) {
     return NULL_OR_UNDEFINED_ERROR_STATE_OBJECT;
   }
-  console.log('errorCode', errorCode);
+
   switch (errorCode) {
     case NO_STOCK_ERROR_CODE:
       return NO_STOCK_ERROR_STATE_OBJECT;
