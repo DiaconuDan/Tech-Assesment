@@ -43,13 +43,16 @@ export default App;
 
 ------------------Line 8:  fetch("https://new.world.com/fleet/121")
 
-    Isn’t this api already used somewhere ? Maybe we can reuse that const value that we consume in the other parts of the app for consistency.
-    
-    If not, then we can put it in a export const newWorldApi = ‘https://new.world.com/fleet'  in utils and we can refer to it from all the places in the App.
-    
-    This way we have one source of truth and we change it just 1 time in one place.
-    
-    The same is available from storing the alert values (Need to buy more fuel, Processing) into consts and it will also avoid typos.
+    We can also catch the error case when this is failing:
+
+    So having an extra parameters at the end(fetch, err) => that we can set the error in state. 
+
+    Did you align with the PO if he mentioned anything about a loading indicator ? If this is the case we'd need to also add a loading state and display
+    a loading indicator.
+
+    Also, isn't this api url base already used somewhere ? Maybe we can reuse that const value that we consume in the other parts of the app for consistency.
+    Would be nice to have one source of truth for the const values usually.
+ 
 
 ------------------Line 11-13: setFeul(json); console.log(json);
    
@@ -61,13 +64,18 @@ export default App;
 
 ------------------Line 16-20: useEffect(() => { if (!fuel) setAlertTxt("Processing..."); else if (fuel.litres > 0) setAlertTxt("Need to buy more fuel");  else setAlertTxt("All is fine");}, [fuel]);
 
+
     This useEffect is not needed, we could have a function that takes the fuel as prop and then return the needed alert.
     
     const alertText = getAlertText(fuel)
     
     Reason: the component re-renders after the fuel changes and we don’t make any mutation to the alert afterwards.
 
-    I also see we instantiate the fuel with a number and then we use it as object.  That is not needed, we can use the just the number
+    I also see we instantiate the fuel with a number and then we use it as object.  That is not needed, we can use the just the number.
+
+    Also, it would be good to have these values (Need to buy more fuel, Processing, ...) into consts to have one source of truth. Imagine we
+    use it everywhere, then if they change, we'd need to change it everywhere. Also, this way we avoid typos and we can also import them
+    into test cases directly.
 
 ------------------Line 24: <h1 style={alertText == "Need to buy more fuel" ? { color: "red" } : {}}>
 
@@ -86,6 +94,5 @@ export default App;
 
  ------------------General comment: Good progress, let me know if you need guidance or further explanations, happy to help!
 }
-
 
 */

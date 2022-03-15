@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const limit = 1;
-const WEATHER_API_KEY = "e37c61cca129939ae3063919ecb01b5d";
+const WEATHER_API_KEY = "e37c61cca129939ae3063919ecb01b5d"; // ideal hidden, but kept it so repository can be tested for now
 
 class Provider {
   // Gets the weather for a given city

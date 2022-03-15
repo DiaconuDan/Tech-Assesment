@@ -46,10 +46,10 @@ describe("State objects: getProcessingPage function", () => {
   });
 });
 
-// this might not be a good fit to unit test it (this will also keep the ), but was curious to play around how a timeout test could possibly look like
+// this might not be a good fit to unit test it, but was curious to play around how a timeout test could possibly look like
 
 describe("State objects: getProcessingPage function timeout works as expected", () => {
-  test("takes 2 seconds timeout for  one processing ", () => {
+  test("takes 2 seconds timeout when give one processingState", () => {
     var startTime = performance.now();
     return getProcessingPage([successState, processingState]).then((data) => {
       var endTime = performance.now();
