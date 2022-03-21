@@ -1,6 +1,6 @@
 a. Stack
 
--> React
+-> React + React Query for fetching
 
 Speed, Virtual DOM only updating the page content only where is has changed, very light library
 JSX create components with HTML syntax, easy to write, read, understand => less code and cleaner
@@ -75,11 +75,12 @@ c,d. List of components to implement/location
 
 First step: fetching data
 
-    ProfileListingPage component will make use of react hooks: useEffect to fetch the profiles from the BE, which will then update the local state with the results. 
+    ProfileListingPage component will make use of useQuery to fetch the profiles from the BE 
 
     We can also display a loading indicator while the result is still not completed.
 
 Second step: delegating data
+
      
     map the fetched response => profiles.map( element => <ProfileCard name={element.name} email={element.email} avatar={element.photo} profileId={element.id} />)
 
@@ -88,12 +89,17 @@ Second step: delegating data
 
 Third step: redirect on click
 
+     We can use pre-fetching of react query or more advance: cache the getProfileId result to correspond to current profile from getProfiles so we don't refetch getById.
+
+
     We can have a cursor pointer/see more button on the ProfileCard that onClick redirects to FE route profile-details/id => redirects to ProfilePage component
 
     In ProfilePage we can get the id using the hook useParams and then fetch the node endpoint by uuid.
 
     We would then render again the ProfileCard component with the data from api ( we could also have an additional styles prop to control the width/height of picture if 
     we decided to keep the same design on that page but different width/height/font-size values etc)
+
+
 
 
 Additional possible steps:

@@ -56,7 +56,9 @@ export default App;
 
 ------------------Line 11-13: setFeul(json); console.log(json);
    
-    Why do we need the whole json ? I don’t see we use the id anywhere, maybe we can just setFuel with the litres number.
+    Setting the api result in state is not best practice. We can use react-query, it will provide us with 
+    best logic on fetching api request. I will align we the team if we can add it to the project and set a pattern across codebase: https://react-query.tanstack.com/
+    Otherwise, if we don't want to add additional dependencies, we could just make use of useReducer: https://dev.to/max_frolov_/react-hooks-usereducer-complex-state-handling-243k
 
     Also, I think you forgot to remove the console log.
 
